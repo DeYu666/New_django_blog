@@ -1,0 +1,39 @@
+
+      <div class="pagenav">
+        <div class="panda_pagi">
+          <ul class="menu">
+
+            {% if page_obj.has_previous %}
+            <li><a class="page-numbers" href="?{{ page_obj.previous_page_number.querystring }}">
+              &lsaquo;&lsaquo; </a>
+            </li>
+            {% else %}
+             <li style="display: none"><span class="disabled prev">&lsaquo;&lsaquo; </span></li>
+            {% endif %}
+
+
+
+            {% for page in page_obj.pages %}
+              {% if page %}
+                {% ifequal page page_obj.number %}
+                <li class="pagenumber active anchor"><a href="#">{{ page }}</a></li>
+                {% else %}
+                <li class="pagenumber"><a href="?{{ page.querystring }}" class="page-numbers">{{ page }}</a></li>
+                {% endifequal %}
+                {% else %}
+                <li class="pagenumber"><a href="?{{ page.querystring }}" class="page-numbers">...</a></li>
+                {% endif %}
+              {% endfor %}
+
+
+
+
+             {% if page_obj.has_next %}
+                  <li><a href="?{{ page_obj.next_page_number.querystring }}" class="page-numbers"> &rsaquo;&rsaquo;</a>
+                  </li>
+                {% else %}
+                  <li style="display: none"><span class="disabled next"> &rsaquo;&rsaquo;</span></li>
+                {% endif %}
+            </ul>
+          </div>
+        </div>

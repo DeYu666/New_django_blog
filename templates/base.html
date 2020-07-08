@@ -1,0 +1,381 @@
+{% load static %}
+{% load blog_extras %}
+{% load diary_extras %}
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asa的博客 | Record my life</title>
+    <!--网页标题左侧显示-->
+    <link rel="icon" href="{% static 'blog/img/ico.png' %}" type="image/x-icon">
+    <!--收藏夹显示图标-->
+    <link rel="shortcut icon" href="{% static 'blog/img/ico.png' %}" type="image/x-icon">
+
+              {% block singleCss %}
+
+              {% endblock singleCss %}  
+    <!-- meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- css -->
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/swiper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/pace.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
+    <!-- js -->
+    <script src="{% static 'blog/js/jquery-2.1.3.min.js' %}"></script>
+    <script src="{% static 'blog/js/pace.min.js' %}"></script>
+    <script src="{% static 'blog/js/modernizr.custom.js' %}"></script>
+    <script src="{% static 'blog/js/swiper.min.js' %}"></script>
+</head>
+
+<body>
+  <div id="wrapper-all" class="wrapper">
+    <div id="nav" class="main-nav flat">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-12 logo">
+                  <a href="{% url 'blog:index' %} ">
+                    <img src="{% static 'blog/img/logo.png' %}">
+                  </a>
+                </div><!-- col-md-4 -->
+                <div class="col-md-8 col-sm-12 col-xl-8_5">
+                    <div class="row">
+                        <div class="topNav">
+                            <ul class="menu">
+                                <li class="anchor" style="position: absolute; left: 953.281px; width: 78px; opacity: 1;"></li>
+                                <li class="menu-item">
+                                    <a href="{% url 'blog:index' %}" data-hover="首页">
+                                        <svg class="bi bi-house-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                          <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5z" clip-rule="evenodd"></path>
+                                          <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 011.414 0l6.647 6.646a.5.5 0 01-.708.708L8 2.207 1.354 8.854a.5.5 0 11-.708-.708L7.293 1.5z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        首页
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="{% url 'blog:blogAll' %}" data-hover="博客"> 
+                                        <svg class="bi bi-folder-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                          <path fill-rule="evenodd" d="M9.828 3h3.982a2 2 0 011.992 2.181l-.637 7A2 2 0 0113.174 14H2.826a2 2 0 01-1.991-1.819l-.637-7a1.99 1.99 0 01.342-1.31L.5 3a2 2 0 012-2h3.672a2 2 0 011.414.586l.828.828A2 2 0 009.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 006.172 2H2.5a1 1 0 00-1 .981l.006.139z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        博客
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="{% url 'diary:diaryAll' %}" data-hover="关于"> 
+                                        <svg class="bi bi-stopwatch-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                          <path fill-rule="evenodd" d="M5.5.5A.5.5 0 016 0h4a.5.5 0 010 1H9v1.07A7.002 7.002 0 018 16 7 7 0 017 2.07V1H6a.5.5 0 01-.5-.5zm3 4.5a.5.5 0 00-1 0v3.5h-3a.5.5 0 000 1H8a.5.5 0 00.5-.5V5z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        时光轴
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="{% url 'comments:postBorad' %}" data-hover="联系"> 
+                                        <svg class="bi bi-envelope-open-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                          <path fill-rule="evenodd" d="M8.941.435a2 2 0 00-1.882 0l-6 3.2A2 2 0 000 5.4v.125l8 4.889 8-4.889V5.4a2 2 0 00-1.059-1.765l-6-3.2zM16 6.697l-5.875 3.59L16 13.743V6.697zm-.168 8.108L9.246 10.93l-.089-.052-.896.548-.261.159-.26-.16-.897-.547-.09.052-6.585 3.874A2 2 0 002 16h12a2 2 0 001.832-1.195zM0 13.743l5.875-3.456L0 6.697v7.046z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        留言板
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!-- /.navbar-collapse -->
+                </div>
+                <div class="col-md-1 col-xl-0_5 hidden-xs hidden-sm">
+                    <div id="search-menu" class="normal_searchBtn">
+                        <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"></path>
+                          <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="mobileNavMenuBtn visible-xs visible-sm">
+                  <div class="menuIcon">
+                    <div class="bread bread1"></div>
+                    <div class="bread bread2"></div>
+                    <div class="bread bread3"></div></div>
+                    <div id="phone-sider" class="sidebar">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+                        <path id="sidebar" data-name="sidebar" class="cls-1" d="M19,20H3a3,3,0,0,1-3-3V5A3,3,0,0,1,3,2H19a3,3,0,0,1,3,3V17A3,3,0,0,1,19,20ZM13,3H3A2,2,0,0,0,1,5V17a2,2,0,0,0,2,2H13V3Zm8,2a2,2,0,0,0-2-2H14V19h5a2,2,0,0,0,2-2V5Zm-6,7h5v1H15V12Zm0-3h5v1H15V9Zm0-3h5V7H15V6Z"></path>
+                      </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="container coverflow-wrapper">
+            <div class="coverflow coverflow-color">
+
+
+
+
+
+
+
+
+              <!-- 第一处、 以下内容是修改的 -->
+
+              {% block coverflow %}
+
+              {% endblock coverflow %}               
+
+              <!-- 第一处、 以上内容是修改的 -->
+
+
+
+
+
+
+
+
+
+
+            </div>
+      </div>
+      <div id='my' class="container postListsModel">
+        <div class="row">
+          <div id="article_big" class="col-md-9 col-lg-9_5">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <!-- 第二处、 以下内容发生改变 -->
+            
+
+
+         
+
+          {% block main %}
+
+
+          {% endblock main %}     
+
+
+
+          <!-- 第二处、 以上内容发生改变 -->
+
+
+
+
+
+
+
+          </div>
+          <div id="article_hidden" class="col-md-3 col-lg-2_5 hidden-xs hidden-sm">
+            <div class="row">
+
+
+
+
+
+            <!-- 第三处、以下内容发生改变 -->
+
+
+          {% block toc %}
+          {% endblock toc %}  
+
+
+
+
+            <!-- 第三处、以上内容发生改变 -->
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <!-- 第四处、以下内容修改 -->
+
+
+
+
+          {% block other %}
+
+
+          {% endblock other %}   
+
+
+
+
+
+
+      
+      <!-- 第四处、以上内容修改 -->
+      
+
+
+
+
+
+
+
+
+	  <footer id="footer">
+		   <div class="container">
+		    <div class="copyright silver-color">
+		     版权所有 &copy; 2018 PANDA Studio | 刘欢 All Rights Reserved
+		    </div>
+		    <div class="beian " :template="beian">
+		     <a href="http://www.beian.miit.gov.cn" target="_blank"><span>滇ICP备15007660号</span></a>
+		    </div>
+		    <script></script>
+		    <style> {display:inline !important;font-size: 0 !important;line-height: 0 !important;float: left;}p+,h2+,h3+, {display: none !important;}</style>
+		   </div>
+	  </footer>
+
+    </div>
+
+
+
+
+
+
+
+
+    <div class="mobile_sidebar visible-xs visible-sm">
+      <div class="sidebar"> 
+        <div class="sidebarMenu"> 
+          <ul class="menu phone-menu"> 
+            <li class="anchor" style="position: absolute; left: 1px; width: 38px; opacity: 1;"></li> 
+            <li id="phone-menu-id1" class="active"> 
+              <a class=" phone-about-me" data-original-title="关于我"> 
+                <svg class="bi bi-person-fill" width="1.3em" height="1.3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                </svg>
+              </a> 
+            </li> 
+            <li id="phone-menu-id2" > 
+              <a class=" phone-tuijian" data-toggle="tooltip"  data-placement="auto top" data-original-title="文章推荐"> 
+                <svg class="bi bi-gem" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M3.1.7a.5.5 0 01.4-.2h9a.5.5 0 01.4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 01-.8 0L.1 5.3a.5.5 0 010-.6l3-4zm11.386 3.785l-1.806-2.41-.776 2.413 2.582-.003zm-3.633.004l.961-2.989H4.186l.963 2.995 5.704-.006zM5.47 5.495l5.062-.005L8 13.366 5.47 5.495zm-1.371-.999l-.78-2.422-1.818 2.425 2.598-.003zM1.499 5.5l2.92-.003 2.193 6.82L1.5 5.5zm7.889 6.817l2.194-6.828 2.929-.003-5.123 6.831z" clip-rule="evenodd"></path>
+                </svg>
+              </a> 
+            </li> 
+          </ul> 
+        </div> 
+      </div> 
+
+      <div manual-template="sidebar" style="margin-top: -10px;margin-bottom: -10px;overflow: hidden; height: 1171px;"> 
+        <div class="custom-scrollbar-wrapper" style="position: relative;"> 
+          <div class="custom-scrollbar-content-wrapper" style="overflow: auto;  position: relative; height: 1171px;"> 
+            <div class="custom-scrollbar-content" style="">
+              <aside id="phone-sidebar-1" class="sidebar" style=""> 
+                <ul class="widget-list"> 
+                  <li class="widget pf_user_info"> 
+                      <div class="authorImg" style="background-image: url({% static 'blog/img/head_img.jpg' %});"></div> 
+                       <div class="meta"> 
+                        <div class="name">
+                         Asa
+                        </div> 
+                        <div class="description">
+                          独属于我自己的个人小屋
+                        </div>
+                        </div> 
+                  </li> 
+                       <li id="pf_tag_cloud-widget-2" class="widget pf_tag_cloud"> <h2 class="widgettitle">关注我</h2> 
+                        <ul class="link"> 
+                          <li> <a href="#" target="_blank">
+                            <svg class="bi bi-eye" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 001.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0014.828 8a13.133 13.133 0 00-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 001.172 8z" clip-rule="evenodd"></path>
+                              <path fill-rule="evenodd" d="M8 5.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM4.5 8a3.5 3.5 0 117 0 3.5 3.5 0 01-7 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            新浪微博</a> </li> 
+                          <li> <a href="#" target="_self">
+                            <svg class="bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd"></path>
+                              <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0 00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z" clip-rule="evenodd"></path>
+                            </svg>
+                            微信公众号</a> 
+                          </li> 
+                          <li> <a href="{% url 'comments:link' %}" target="_self">
+                            <svg class="bi bi-link-45deg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M4.715 6.542L3.343 7.914a3 3 0 104.243 4.243l1.828-1.829A3 3 0 008.586 5.5L8 6.086a1.001 1.001 0 00-.154.199 2 2 0 01.861 3.337L6.88 11.45a2 2 0 11-2.83-2.83l.793-.792a4.018 4.018 0 01-.128-1.287z"></path>
+                              <path d="M5.712 6.96l.167-.167a1.99 1.99 0 01.896-.518 1.99 1.99 0 01.518-.896l.167-.167A3.004 3.004 0 006 5.499c-.22.46-.316.963-.288 1.46z"></path>
+                              <path d="M6.586 4.672A3 3 0 007.414 9.5l.775-.776a2 2 0 01-.896-3.346L9.12 3.55a2 2 0 012.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 00-4.243-4.243L6.586 4.672z"></path>
+                              <path d="M10 9.5a2.99 2.99 0 00.288-1.46l-.167.167a1.99 1.99 0 01-.896.518 1.99 1.99 0 01-.518.896l-.167.167A3.004 3.004 0 0010 9.501z"></path>
+                            </svg>
+                            友情链接</a> 
+                          </li> 
+                         </ul>  </li> 
+
+                      <li id="pf_tag_cloud-widget-3" class="widget pf_tag_cloud"> <h2 class="widgettitle">My Tags</h2> 
+                          {% show_tags %}
+                     </li> 
+                <li id="pf_tag_cloud-widget-4" class="widget pf_tag_cloud"> <h2 class="widgettitle">导航</h2> 
+                  
+                    {% show_categories %}
+
+                </li> 
+                <li id="pf_microblog-widget-2" class="widget pf_microblog"> <h2 class="widgettitle">轻博客</h2> 
+                  {% show_diarys %}
+                </li>
+                </ul>
+              </aside>
+              <aside id="phone-sidebar-2" class="sidebar" style="display: none;">
+              <ul class="widget-list">
+              <li id="pf_hotposts-widget-2" class="widget pf_hotposts"><h2 class="widgettitle">大家喜欢</h2>
+                {% show_most_likes %}
+              </li>
+              <li id="pf_hotposts-widget-3" class="widget pf_hotposts"><h2 class="widgettitle">最多评论</h2>
+                {% show_most_time_comments %}
+              </li>
+              </ul>
+              </aside>
+            </div>
+          </div>
+          <div class="custom-scrollbar-track" style="width: 6px; background-color: transparent; position: absolute; top: 0px; height: 100%; display: block; right: 0px;">
+          <div class="scrollBar-background ui-draggable ui-draggable-handle scrolling" style="width: 6px; background-color: rgba(31, 45, 61, 0.2); position: absolute; right: 0px; height: 1053.18px; top: 0px;"></div>
+          </div>
+        </div>
+      </div> 
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="{% static 'blog/js/script.js' %}"></script>
+<script src="{% static 'blog/js/blog.js' %}"></script>
+              {% block singleJs %}
+
+              {% endblock singleJs %}  
+
+
+</body>
+</html>

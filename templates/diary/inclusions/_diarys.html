@@ -1,0 +1,26 @@
+ 
+
+
+ <ul> 
+    {% for diary in diary_list %}
+  <li> 
+   <div class="date silver-color">
+    <span>{{ diary.created_time  }}</span>
+   </div> 
+   <div class="main"> 
+    <p></p> 
+    <p thumbnail="post" style="height: 0px; margin: 0px; visibility: hidden;"><img src="" /></p> 
+    <p>{{ diary.body }}</p> 
+    <p></p> 
+   </div> </li> 
+  {% empty %}
+    <li> 
+   <div class="main"> 
+    <p></p> 
+    <p thumbnail="post" style="height: 0px; margin: 0px; visibility: hidden;"><img src="" /></p> 
+    <p>暂无内容</p> 
+    <p></p> 
+   </div> </li> 
+  {% endfor %}
+  
+ </ul>

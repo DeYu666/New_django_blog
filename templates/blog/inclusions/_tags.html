@@ -1,0 +1,7 @@
+<ul class="tag"> 
+  {% for tag in tag_list %}
+    <li><a href="{% url 'blog:tag' tag.pk %}" target="_self">{{ tag.name }}</a></li>
+  {% empty %}
+    <li><a href="#" target="_self">暂无标签！</a></li>
+  {% endfor %}
+</ul>

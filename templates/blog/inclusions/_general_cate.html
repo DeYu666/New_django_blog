@@ -1,0 +1,11 @@
+
+  {% for k,v in dict_cate.items %}
+  <div class="dropdown">
+    <span>{{ k }}</span>
+    <div class="dropdown-content">
+      {% for cate in v %}
+      <p><a href="{% url 'blog:category' cate.pk %}">{{cate}}</a></p>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}

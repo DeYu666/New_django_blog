@@ -1,0 +1,326 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load blog_extras %}
+{% load diary_extras %}
+
+
+
+
+
+{% block coverflow %}
+
+    {% show_carousel %}
+
+{% endblock coverflow %}   
+
+
+
+
+
+
+
+
+
+
+{% block main %}
+
+
+      <div class="categoryNav-wrapper">
+        <div class="categoryNav">
+          <div class="dropdown active">
+            <span>智能推荐</span>
+          </div>
+          <div class="dropdown">
+            <a href="{% url 'blog:blogAll' %}"> <span>全部文章</span></a>
+          </div>
+          {% show_General_cate %}
+        </div>
+      </div>
+
+      <div class="col-xs-12">
+      	<div class="row">
+      		<div class="row postLists cards ">
+              {% for post in post_list %}
+      					  <div class="col-xxs-6 col-xs-4 col-lg-3 post-card-wrapper">
+      						  <div class="card">
+      						    <a href="{{ post.get_absolute_url }}" class="cover" style="background-image: url({% if post.cover_url %}{{ post.cover_url }}{% else %}{% static 'blog/img/cover/none.png' %}{% endif %});" showas="padding"></a>
+      						    <a href="{{ post.get_absolute_url }}" showas="img"><img src="{% if post.cover_url %}{{ post.cover_url }}{% else %}  {% static 'blog/img/cover/none.png' %}{% endif %}" class="cover" alt="" /></a>
+      						    <div class="meta">
+      						      <div class="date">
+                          {{ post.created_time }}
+      						      </div>
+      						     <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+      						     <div class="tags">
+                        {% for tag in post.tags.all  %}
+      						      <a class="color-{{ tag.pk }}">{{ tag.name }}</a> 
+                        {% empty %}
+                        <a class="color-2">暂无标签</a> 
+       
+                        {% endfor %}
+      						     </div>
+      						     <div class="summary">
+      						      <span class="views">
+                          <svg class="bi bi-eye" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color:green">
+                            <path fill-rule="evenodd" d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 001.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0014.828 8a13.133 13.133 0 00-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 001.172 8z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M8 5.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM4.5 8a3.5 3.5 0 117 0 3.5 3.5 0 01-7 0z" clip-rule="evenodd"></path>
+                          </svg>
+                          {{ post.views }}
+                        </span> 
+      						      <span class="likes">
+                          <svg class="bi bi-heart-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: red;">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" clip-rule="evenodd"></path>
+                          </svg>
+                          {{ post.likes }}
+                        </span> 
+      						      <span class="comments">
+                          <svg class="bi bi-chat-quote-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: #20a0ff;">
+                            <path fill-rule="evenodd" d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 01-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM7.194 6.766c.087.124.163.26.227.401.428.948.393 2.377-.942 3.706a.446.446 0 01-.612.01.405.405 0 01-.011-.59c.419-.416.672-.831.809-1.22-.269.165-.588.26-.93.26C4.775 9.333 4 8.587 4 7.667 4 6.747 4.776 6 5.734 6c.271 0 .528.06.756.166l.008.004c.169.07.327.182.469.324.085.083.161.174.227.272zM11 9.073c-.269.165-.588.26-.93.26-.958 0-1.735-.746-1.735-1.666 0-.92.777-1.667 1.734-1.667.271 0 .528.06.756.166l.008.004c.17.07.327.182.469.324.085.083.161.174.227.272.087.124.164.26.228.401.428.948.392 2.377-.942 3.706a.446.446 0 01-.613.01.405.405 0 01-.011-.59c.42-.416.672-.831.81-1.22z" clip-rule="evenodd"></path>
+                          </svg> 
+                          {{ post.comment_set.count }} 
+                        </span> 
+      						     </div>
+      						     <article class="description">
+      						      {{ post.excerpt }}
+      						     </article>
+      						    </div>
+      						   </div>
+      					  </div>
+
+              {% empty %}
+                <div class="no-post">暂时还没有发布的文章！</div>
+              {% endfor %}
+	        </div>
+	       </div>
+
+        <div class="row postLists">
+          <div class="col-xs-12 readMore"><a href="{% url 'blog:blogAll' %}">
+          	全部文章<i class="fas fa-chevron-down"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+{% endblock main %}     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% block toc %}
+
+
+
+               <div class="sidebar"> 
+                 <div class="sidebarMenu"> 
+                  <ul class="menu"> 
+                   <li class="anchor" style="position: absolute; left: 1px; width: 38px; opacity: 1;"></li> 
+                   <li id="menu-id1" class="active"> <a class="about-me-2" data-original-title="关于我"> 
+                    <svg class="bi bi-person-fill " width="1.3em" height="1.3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                    </svg>
+                  </a> </li> 
+                   <li id="menu-id2" > <a class="tuijian-2" data-toggle="tooltip"  data-placement="auto top" data-original-title="文章推荐"> 
+                    <svg class="bi bi-gem" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M3.1.7a.5.5 0 01.4-.2h9a.5.5 0 01.4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 01-.8 0L.1 5.3a.5.5 0 010-.6l3-4zm11.386 3.785l-1.806-2.41-.776 2.413 2.582-.003zm-3.633.004l.961-2.989H4.186l.963 2.995 5.704-.006zM5.47 5.495l5.062-.005L8 13.366 5.47 5.495zm-1.371-.999l-.78-2.422-1.818 2.425 2.598-.003zM1.499 5.5l2.92-.003 2.193 6.82L1.5 5.5zm7.889 6.817l2.194-6.828 2.929-.003-5.123 6.831z" clip-rule="evenodd"></path>
+                    </svg>
+                  </a> </li> 
+                  </ul> 
+                 </div> 
+                </div> 
+                <div manual-template="sidebar" style="margin-top: -10px;margin-bottom: -10px;overflow: hidden; height: 1171px;"> 
+                 <div class="custom-scrollbar-wrapper" style="position: relative;"> 
+                  <div class="custom-scrollbar-content-wrapper" style="overflow: auto; width: 150%; position: relative; height: 1171px;"> 
+                   <div class="custom-scrollbar-content" style="">
+                    <aside id="sidebar-1" class="sidebar" style=""> 
+                     <ul class="widget-list"> 
+                      <li class="widget pf_user_info"> 
+                       <div class="authorImg" style="background-image: url({% static 'blog/img/head_img.jpg' %});"></div> 
+                       <div class="meta"> 
+                        <div class="name">
+                         Asa
+                        </div> 
+                        <div class="description">
+                          独属于我自己的个人小屋
+                        </div> 
+                       </div> </li>
+                       <li id="pf_tag_cloud-widget-2" class="widget pf_tag_cloud"> <h2 class="widgettitle">关注我</h2> 
+                         <ul class="link"> 
+                          <li> <a href="https://weibo.com/u/6255813599" target="_blank">
+                            <svg class="bi bi-eye" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 001.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0014.828 8a13.133 13.133 0 00-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 001.172 8z" clip-rule="evenodd"></path>
+                              <path fill-rule="evenodd" d="M8 5.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM4.5 8a3.5 3.5 0 117 0 3.5 3.5 0 01-7 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            新浪微博</a> </li> 
+                          <li> <a href="#" target="_self">
+                            <svg class="bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd"></path>
+                              <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0 00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z" clip-rule="evenodd"></path>
+                            </svg>
+                            微信公众号</a> 
+                          </li> 
+                          <li> <a href="{% url 'comments:link' %}" target="_self">
+                            <svg class="bi bi-link-45deg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M4.715 6.542L3.343 7.914a3 3 0 104.243 4.243l1.828-1.829A3 3 0 008.586 5.5L8 6.086a1.001 1.001 0 00-.154.199 2 2 0 01.861 3.337L6.88 11.45a2 2 0 11-2.83-2.83l.793-.792a4.018 4.018 0 01-.128-1.287z"></path>
+                              <path d="M5.712 6.96l.167-.167a1.99 1.99 0 01.896-.518 1.99 1.99 0 01.518-.896l.167-.167A3.004 3.004 0 006 5.499c-.22.46-.316.963-.288 1.46z"></path>
+                              <path d="M6.586 4.672A3 3 0 007.414 9.5l.775-.776a2 2 0 01-.896-3.346L9.12 3.55a2 2 0 012.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 00-4.243-4.243L6.586 4.672z"></path>
+                              <path d="M10 9.5a2.99 2.99 0 00.288-1.46l-.167.167a1.99 1.99 0 01-.896.518 1.99 1.99 0 01-.518.896l-.167.167A3.004 3.004 0 0010 9.501z"></path>
+                            </svg>
+                            友情链接</a> 
+                          </li> 
+                         </ul> </li> 
+
+                      <li id="pf_tag_cloud-widget-3" class="widget pf_tag_cloud"> <h2 class="widgettitle">My Tags</h2> 
+                         
+                          {% show_tags %}
+
+                     </li> 
+                     
+                      <li id="pf_tag_cloud-widget-4" class="widget pf_tag_cloud"> <h2 class="widgettitle">导航</h2> 
+
+                    {% show_categories %}
+
+                     </li> 
+                      <li id="pf_microblog-widget-2" class="widget pf_microblog"> <h2 class="widgettitle">轻博客</h2> 
+                      
+
+                        {% show_diarys %}
+
+
+                     </li>
+                     </ul>
+                    </aside>
+                    <aside id="sidebar-2" class="sidebar" style="display: none;">
+                     <ul class="widget-list">
+                      <li id="pf_hotposts-widget-2" class="widget pf_hotposts"><h2 class="widgettitle">大家喜欢</h2>
+
+
+                        {% show_most_likes %}
+
+
+
+                     </li>
+                      <li id="pf_hotposts-widget-3" class="widget pf_hotposts"><h2 class="widgettitle">最近评论</h2>
+
+
+                        {% show_most_time_comments %}
+
+
+                     </li>
+                     </ul>
+                    </aside>
+                   </div>
+                  </div>
+                  <div class="custom-scrollbar-track" style="width: 6px; background-color: transparent; position: absolute; top: 0px; height: 100%; display: block; right: 0px;">
+                   <div class="scrollBar-background ui-draggable ui-draggable-handle scrolling" style="width: 6px; background-color: rgba(31, 45, 61, 0.2); position: absolute; right: 0px; height: 1053.18px; top: 0px;"></div>
+                  </div>
+                 </div>
+                </div> 
+
+{% endblock toc %}   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% block other %}
+
+
+
+      <div class="long-model-wrapper">
+        <div class="long-model posts-">
+          <div class="container">
+            <span class="model-title">其它{{ otherPost.0.category.id }}</span>
+            {% if otherPost.0.category.id %}
+            <a class="more" href="{% url 'blog:category' otherPost.0.category.id %}">More<i class="fas fa-angle-right"></i></a>
+            {% else %}
+            <a class="more" href="#2">More<i class="fas fa-angle-right"></i></a> 
+            {% endif %}
+          <div class="row postLists lists">
+
+
+
+            {% for post in otherPost %}
+
+             <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+              <div class="card">
+               <a href="{{ post.get_absolute_url }} " class="cover" style="background-image: url({% static 'blog/img/cover/333.jpg' %});" showas="padding"></a>
+               <a href="{{ post.get_absolute_url }} " showas="img"><img src="{% static 'blog/img/cover/333.jpg' %}" class="cover" alt="" /></a>
+               <div class="meta">
+                <div class="date">
+                 {{ post.created_time }}
+                </div>
+                <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                <div class="tags">
+                   {% for tag in post.tags.all  %}
+                  <a class="color-{{ tag.pk }}">{{ tag.name }}</a> 
+                  {% empty %}
+                  <a class="color-2">无标签</a> 
+                  {% endfor %}
+                </div>
+                <div class="summary">
+                 <span class="views">
+                          <svg class="bi bi-eye" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color:green">
+                            <path fill-rule="evenodd" d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 001.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0014.828 8a13.133 13.133 0 00-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 001.172 8z" clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd" d="M8 5.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM4.5 8a3.5 3.5 0 117 0 3.5 3.5 0 01-7 0z" clip-rule="evenodd"></path>
+                          </svg>
+                          {{ post.views }}
+                        </span> 
+                        <span class="likes">
+                          <svg class="bi bi-heart-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: red;">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" clip-rule="evenodd"></path>
+                          </svg>
+                          {{ post.likes }}
+                        </span> 
+                        <span class="comments">
+                          <svg class="bi bi-chat-quote-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: #20a0ff;">
+                            <path fill-rule="evenodd" d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 01-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM7.194 6.766c.087.124.163.26.227.401.428.948.393 2.377-.942 3.706a.446.446 0 01-.612.01.405.405 0 01-.011-.59c.419-.416.672-.831.809-1.22-.269.165-.588.26-.93.26C4.775 9.333 4 8.587 4 7.667 4 6.747 4.776 6 5.734 6c.271 0 .528.06.756.166l.008.004c.169.07.327.182.469.324.085.083.161.174.227.272zM11 9.073c-.269.165-.588.26-.93.26-.958 0-1.735-.746-1.735-1.666 0-.92.777-1.667 1.734-1.667.271 0 .528.06.756.166l.008.004c.17.07.327.182.469.324.085.083.161.174.227.272.087.124.164.26.228.401.428.948.392 2.377-.942 3.706a.446.446 0 01-.613.01.405.405 0 01-.011-.59c.42-.416.672-.831.81-1.22z" clip-rule="evenodd"></path>
+                          </svg> 
+                          {{ post.comment_set.count }} 
+                        </span> 
+                </div>
+                <article class="description">
+                 {{ post.excerpt }}
+                </article>
+               </div>
+              </div>
+             </div>
+             {% empty %}
+              <div class="no-post">暂时还没有发布的文章！</div>
+            {% endfor %}
+
+
+
+
+          </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock other %}   
+

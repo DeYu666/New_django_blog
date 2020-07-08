@@ -1,0 +1,14 @@
+1、  File "D:\Program Files\Python\Python36\lib\socket.py", line 674, in getfqdn
+     hostname, aliases, ipaddrs = gethostbyaddr(name)
+     UnicodeDecodeError: 'utf-8' codec can't decode byte 0xd2 in position 0: invalid continuation byte
+
+解决方法：经研究错误提示发现gethostbyaddr()函数是中文翻译就是获取主机地址，而传参是名字，那么name传入的就是主机名，也就是我们电脑名。我的电脑名是中文，是不是改成英文就可以了，经测试发现的确是主机中文名导致的问题，改成英文名即可顺利启动本地服务器。
+
+
+
+
+
+
+markdown 编辑器
+pip install martor
+https://zhuanlan.zhihu.com/p/48187338
