@@ -1,6 +1,17 @@
 
   {% for k,v in dict_cate.items %}
-  <div class="dropdown">
+
+    {% if isBlog%}
+        <div class="dropdown">
+    {% else %}
+        {% if whatCate == k %}
+            <div class="dropdown active">
+        {% else %}
+            <div class="dropdown">
+        {% endif %}
+    {% endif %}
+
+
     <span>{{ k }}</span>
     <div class="dropdown-content">
       {% for cate in v %}

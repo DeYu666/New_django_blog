@@ -28,7 +28,7 @@ def show_tags(context):
 
 
 @register.inclusion_tag('blog/inclusions/_general_cate.html', takes_context=True)
-def show_General_cate(context):
+def show_General_cate(context, currentCate):
     dict_cate = {}
     general_cates = General_cate.objects.exclude(name='其他')
     
@@ -38,6 +38,7 @@ def show_General_cate(context):
 
     return {
         'dict_cate': dict_cate,
+        'whatCate': currentCate,
     }
 
 

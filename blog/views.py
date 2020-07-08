@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Post,Category,Tag
+from .models import Post, Category, Tag, General_cate
 import re
 from django.views.generic import ListView,DetailView
 import markdown #导入markdown
@@ -19,12 +19,9 @@ class IndexView(PaginationMixin,ListView):
 
     paginate_by = 12
 
-
     def get_queryset(self):
         cate = get_object_or_404(Category, name='其他')
         return super(IndexView,self).get_queryset().exclude(category=cate)
-
-
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -39,13 +36,6 @@ class IndexView(PaginationMixin,ListView):
         return context
 
 
-
-
-
-
-
-
-
 class BlogAllView(PaginationMixin,ListView):
     model = Post
     template_name = 'blog/blog.html'
@@ -54,9 +44,15 @@ class BlogAllView(PaginationMixin,ListView):
 
     def get_queryset(self):
         cate = get_object_or_404(Category, name='其他')
-        return super(BlogAllView,self).get_queryset().exclude(category=cate)
+        return super(BlogAllView, self).get_queryset().exclude(category=cate)
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
 
+        # Add in a QuerySet of all the books
+        context['isBlog'] = 1  # 是否为 blog 的全部文章页
+        return context
 
 
 
@@ -67,20 +63,18 @@ class CategoryView(PaginationMixin,ListView):
     context_object_name = 'post_list'
     paginate_by = 12
 
-
-
-
     def get_queryset(self):
         cate = get_object_or_404(Category, pk=self.kwargs.get('pk'))
-        return super(CategoryView,self).get_queryset().filter(category=cate)
-
+        return super(CategoryView, self).get_queryset().filter(category=cate)
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
+
         cate = get_object_or_404(Category, pk=self.kwargs.get('pk'))
 
-        # Add in a QuerySet of all the books
+        context['isBlog'] = 0  # 是否为 blog 的全部文章页
+        context['whatCate'] = cate.general_cate
         context['cateName'] = cate
         return context
 

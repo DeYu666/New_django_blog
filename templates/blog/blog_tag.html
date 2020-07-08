@@ -80,8 +80,8 @@
 
                   <div class="col-xxs-6 col-xs-4 col-lg-3 post-card-wrapper">
                      <div class="card">
-                      <a href="{{ post.get_absolute_url }}" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2019/09/node_and_gutenberg_cat.png);" showas="padding"></a>
-                      <a href="{{ post.get_absolute_url }}" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2019/09/node_and_gutenberg_cat.png" class="cover" alt="" /></a>
+                      <a href="{{ post.get_absolute_url }}" class="cover" style="background-image: url({% if post.cover_url %}{{ post.cover_url }}{% else %}{% static 'blog/img/cover/none.png' %}{% endif %});" showas="padding"></a>
+                      <a href="{{ post.get_absolute_url }}" showas="img"><img src="{% if post.cover_url %}{{ post.cover_url }}{% else %}{% static 'blog/img/cover/none.png' %}{% endif %}" class="cover" alt="" /></a>
                       <div class="meta">
                        <div class="date">
                         <!-- 9月6日 &middot; 2019年 -->

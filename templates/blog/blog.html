@@ -32,11 +32,21 @@
                 <div class="dropdown ">
                  <a href="{% url 'blog:index' %}"> <span>智能推荐</span> </a>
                 </div>
-                <div class="dropdown active">
-                  <span>全部文章</span>
-                </div>
 
-                    {% show_General_cate %}
+                {% if isBlog%}
+                    <div class="dropdown active">
+                        <span>全部文章</span>
+                {% else %}
+                    <div class="dropdown">
+                        <a href="{% url 'blog:blogAll' %}"> <span>全部文章</span></a>
+                {% endif %}
+
+                </div>
+                    {% if whatCate %}
+                        {% show_General_cate whatCate %}
+                    {% else %}
+                        {% show_General_cate 0 %}
+                    {% endif %}
                     
               </div>
             </div>

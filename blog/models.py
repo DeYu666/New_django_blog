@@ -13,8 +13,6 @@ from django.utils.html import strip_tags
 class General_cate(models.Model):
     name = models.CharField(max_length=100)
 
-
-
     class Meta:
         verbose_name = '总类'
         verbose_name_plural = verbose_name
