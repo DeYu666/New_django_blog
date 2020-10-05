@@ -16,7 +16,7 @@
 
 ​	顶部的导航栏在下滑时也会有相应的变化：
 
-![index](https://github.com/DeYu666/New_django_blog/blob/master\doc\pic\index.png)
+![index](https://github.com/DeYu666/New_django_blog/blob/master/doc/pic/index.png)
 
 
 
