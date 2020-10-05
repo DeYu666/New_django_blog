@@ -1,0 +1,4 @@
+# 忽略数据库
+db.sqlite3
+
+.idea

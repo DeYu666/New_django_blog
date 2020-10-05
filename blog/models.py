@@ -123,3 +123,7 @@ class Carousel(models.Model):
         verbose_name = '轮播图'
         verbose_name_plural = verbose_name
 
+
+class Link_info(models.Model):
+    name = models.CharField('链接名字', max_length=50)
+    url = models.URLField('链接网址', blank=True)

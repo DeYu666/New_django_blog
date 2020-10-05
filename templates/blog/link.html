@@ -65,9 +65,9 @@
                   {% for link in link_list %}
                   <div class="col-xxs-12 col-xs-6 col-sm-4 col-md-4 col-lg-3">
                     <div class="favlink-card" style="border-top: 3px solid #EA6844">
-                      <a class="title" href="https://blog.oopsays.com/" target="_blank" rel="noopener noreferrer">2B博客</a>
-                      <div class="description">兴趣指引方向，会玩才会学</div>
-                      <a class="icon" style="background-color: #EA6844;box-shadow: 0 3px 8px rgba(234,104,68,0.5);background-image: url(https://img.oopsays.com/2bfriends/500x500_pixel_+.png);background-size:68px 68px" href="https://blog.oopsays.com/" target="_blank" rel="noopener noreferrer">
+                      <a class="title" href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.name }}</a>
+                      <div class="description">{{ link.excerpt }}</div>
+                      <a class="icon" style="background-color: #EA6844;box-shadow: 0 3px 8px rgba(234,104,68,0.5);background-image: url(http://asa-zhang.top/static/blog/img/ico1.png);background-size:68px 68px" href="{{ link.url }}" target="_blank" rel="noopener noreferrer">
                       </a>
                     </div>
                   </div>

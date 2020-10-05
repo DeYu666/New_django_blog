@@ -38,7 +38,9 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('', include('comments.urls')),
     path('', include('diary.urls')),
-    url(r'mdeditor/', include('mdeditor.urls')),
+
+    # url(r'mdeditor/', include('mdeditor.urls')),
+    path(r'mdeditor/', include('mdeditor.urls')),
     # 站内地图
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap')

@@ -58,14 +58,14 @@
 {% block main %}
             <div class="categoryNav-wrapper">
               <div class="categoryNav">
-                <div class="dropdown">
-                  <span>智能推荐</span>
+                <div class="dropdown ">
+                    <a href="{% url 'blog:index' %}"> <span>智能推荐</span> </a>
                 </div>
                 <div class="dropdown">
-                  <span>全部文章</span>
+                    <a href="{% url 'blog:blogAll' %}"> <span>全部文章</span></a>
                 </div>
 
-                    {% show_General_cate %}
+                    {% show_General_cate whatCate %}
               </div>
             </div>
             <div class="col-xs-12">
