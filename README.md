@@ -24,37 +24,37 @@
 
 ​	仍然和原版有些出入，目前就是这样了
 
-![nav-tag](https://github.com/DeYu666/New_django_blog/blob/master\doc\pic\page.png)
+![nav-tag](https://github.com/DeYu666/New_django_blog/blob/master/doc/pic/page.png)
 
 
 
 ##### 标签云和导航分类栏的展示：
 
-![nav-tag](https://github.com/DeYu666/New_django_blog/blob/master\doc\pic\nav-tag.png)
+![nav-tag](https://github.com/DeYu666/New_django_blog/blob/master/doc/pic/nav-tag.png)
 
 
 
 ##### 最多评论文章和最受欢迎文章需要点击才能显示出来
 
-![most-like](https://github.com/DeYu666/New_django_blog/blob/master\doc\pic\most-like.png)
+![most-like](https://github.com/DeYu666/New_django_blog/blob/master/doc/pic/most-like.png)
 
 
 
 ##### 日记页面展示：(这个是模仿的另一个博主的，忘了源地址了。。。 对它的风格做了一些调整，使得它契合这个主题)
 
-![diary](https://github.com/DeYu666/New_django_blog/blob/master\doc\pic\diary.png)
+![diary](https://github.com/DeYu666/New_django_blog/blob/master/doc/pic/diary.png)
 
 
 
 同时这个页面和文章详情页都有全屏显示的功能，即隐藏右边栏：
 
-![diary-screen](https://github.com/DeYu666/New_django_blog/blob/master\doc\pic\diary-screen.png)
+![diary-screen](https://github.com/DeYu666/New_django_blog/blob/master/doc/pic/diary-screen.png)
 
 
 
 ##### 留言版展示：（主要原理就只是将评论区的功能移植了过来）
 
-![board](https://github.com/DeYu666/New_django_blog/blob/master\doc\pic\board.png)
+![board](https://github.com/DeYu666/New_django_blog/blob/master/doc/pic/board.png)
 
 
 
@@ -70,7 +70,7 @@
 
 
 
-![detail](https://github.com/DeYu666/New_django_blog/blob/master\doc\pic\detail.png)
+![detail](https://github.com/DeYu666/New_django_blog/blob/master/doc/pic/detail.png)
 
 
 
@@ -78,7 +78,7 @@
 
 ##  博客界面 - 平板端
 
-![pad](https://github.com/DeYu666/New_django_blog/blob/master\doc\pic\pad.png)
+![pad](https://github.com/DeYu666/New_django_blog/blob/master/doc/pic/pad.png)
 
 
 
@@ -88,7 +88,7 @@
 
 导航栏也可以点击右上角的图标进行显示。
 
-![phone](https://github.com/DeYu666/New_django_blog/blob/master\doc\pic\phone.png)
+![phone](https://github.com/DeYu666/New_django_blog/blob/master/doc/pic/phone.png)
 
 
 
